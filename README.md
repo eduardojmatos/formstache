@@ -11,9 +11,23 @@ To work better with DOM, we choose [jQuery](http://jquery.com/) for manipulation
 
 To validations, we use [jQuery Validation](http://jqueryvalidation.org/) for validate inputs. See below more details about this feature.
 
+To package manager, we use [Bower](http://bower.io/).
+
 ___
 
-## How this works
+## Setup
+
+To install, use:
+
+    npm install
+
+For load bower components,
+
+    bower install
+
+___
+
+## Installing script
 
 There is two ways for this component works, via data attributes or calling by JavaScript.
 
