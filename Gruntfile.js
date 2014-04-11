@@ -56,20 +56,30 @@ module.exports = function(grunt) {
         src: 'Gruntfile.js'
       },
       lib_test: {
-        src: ['js/**/*.js', 'test/**/*.js']
+        src: ['js/**/*.js']
       }
     },
-    qunit: {
-      files: ['test/**/*.html']
+    jasmine: {
+      pivotal: {
+        src: 'js/**/*.js',
+        options: {
+          specs: 'test/spec/*Spec.js',
+          helpers: 'test/spec/*Helper.js'
+        }
+      }
     },
     watch: {
       gruntfile: {
         files: '<%= jshint.gruntfile.src %>',
         tasks: ['jshint:gruntfile']
       },
-      lib_test: {
+      pivotal : {
+        files: ['js/**/*.js', 'test/spec/**/*.js'],
+        tasks: 'jasmine:pivotal:build'
+      },
+      jshint: {
         files: '<%= jshint.lib_test.src %>',
-        tasks: ['jshint:lib_test', 'qunit']
+        tasks: ['jshint:lib_test']
       }
     }
   });
@@ -77,12 +87,12 @@ module.exports = function(grunt) {
   // These plugins provide necessary tasks.
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-qunit');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jasmine');
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify', 'jasmine']);
+  grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
+  grunt.registerTask('test', ['jshint', 'jasmine']);
 
 };
