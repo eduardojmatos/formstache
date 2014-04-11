@@ -1,0 +1,30 @@
+{
+  "name": "formustache",
+  "version": "0.0.1",
+  "authors": [
+    "Eduardo Matos <eduardoj.matos@gmail.com>"
+  ],
+  "description": "A JavaScript component to work with html forms",
+  "main": "js/formstache.js",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "form",
+    "validation",
+    "form",
+    "manipulation"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "jquery": "~2.1.0",
+    "jquery-validation": "~1.11.2"
+  }
+}
