@@ -5,30 +5,14 @@ module.exports = function(grunt) {
   grunt.initConfig({
     // Metadata.
     pkg: grunt.file.readJSON('package.json'),
-    banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
-      '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
-      '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
-      '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
-      ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
     // Task configuration.
     concat: {
-      options: {
-        banner: '<%= banner %>',
-        stripBanners: true
-      },
       dist: {
         src: ['js/<%= pkg.name %>.js'],
         dest: 'dist/<%= pkg.name %>.js'
-      },
-      bower_components: {
-        src: ['bower_components/**/*.js'],
-        dest: 'dist/*.js'
       }
     },
     uglify: {
-      options: {
-        banner: '<%= banner %>'
-      },
       dist: {
         src: '<%= concat.dist.dest %>',
         dest: 'dist/<%= pkg.name %>.min.js'
@@ -68,6 +52,9 @@ module.exports = function(grunt) {
         }
       }
     },
+    bower: {
+      install: {}
+    },
     watch: {
       gruntfile: {
         files: '<%= jshint.gruntfile.src %>',
@@ -90,9 +77,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jasmine');
+  grunt.loadNpmTasks('grunt-bower-task');
 
-  // Default task.
-  grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
+  // All tasks.
+  grunt.registerTask('default', ['jshint', 'concat']);
+  grunt.registerTask('build', ['jshint', 'jasmine', 'bower', 'concat', 'uglify']);
   grunt.registerTask('test', ['jshint', 'jasmine']);
 
 };
