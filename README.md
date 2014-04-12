@@ -27,6 +27,9 @@ For load bower components,
 
 ___
 
+# #TODO
+Before this line, it's just a TODO list.
+
 ## Installing script
 
 There is two ways for this component works, via data attributes or calling by JavaScript.
@@ -41,9 +44,8 @@ Set the primary data attributes, like:
 
     <form action="url/to/post" method="post" data-formstache="true">
 
-      <input type="text" id="form_full_name" name="form_full_name" data-name="Complete Name" data-required="true" data-type="text" />
-
-      <input type="submit" value="Send" />
+        <input type="text" id="form_full_name" name="form_full_name" data-name="Complete Name" data-required="true" data-type="text" />
+        <input type="submit" value="Send" />
 
     </form>
 
@@ -54,3 +56,4 @@ ___
 Call function, passing same parameters, like:
 
     $('.my-pretty-form').formstache();
+
